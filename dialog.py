@@ -72,6 +72,7 @@ class Dialog:
 
   def listen(self):
     st = speech_to_text()
+    cnt = 0
     while True:
       text = st.listen()
       self.speak(text, 0)
@@ -82,6 +83,10 @@ class Dialog:
       elif self.__isdigit(text):
         return self.__toInt(text)
       else:
+        cnt += 1
+        if cnt >= 5:
+          self.speak('要問不問的，滾啦')
+          exit()
         self.understand()
 
   def welcome(self):
