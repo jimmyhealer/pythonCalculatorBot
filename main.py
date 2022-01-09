@@ -1,5 +1,6 @@
 import dialog
 import calc
+import show
 
 speakBot = dialog.Dialog()
 
@@ -19,4 +20,5 @@ while running:
   cnt += 1
 
 ans = calc.calc(array, cnt)
+show.GenerateGraph(array).showGraph()
 speakBot.result(ans)
