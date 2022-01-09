@@ -50,3 +50,6 @@ user
 computer
 => 覆蓋面積為 X
 
+## dependency
+
+[安裝geopandas](https://stackoverflow.com/questions/56958421/pip-install-geopandas-on-windows/60936148)

@@ -5,7 +5,7 @@ import show
 speakBot = dialog.Dialog()
 
 running = True
-array = []
+array = [[13, 20, 15, 25], [14, 11, 37, 50]]
 cnt = 1
 while running:
   results = [[0, 0], [0, 0]]
