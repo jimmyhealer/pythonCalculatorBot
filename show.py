@@ -24,7 +24,8 @@ class GenerateGraph:
     gdf = gpd.GeoDataFrame(dict(geometry=polygons))
     fcs = [(0,1,1,1)] + [(0,0,0,0) for i in range(len(self.__datas))]
     lss = ['-'] + ['--' for i in range(len(self.__datas))]
-    gdf.plot(linestyle=lss, linewidth=2, facecolor=fcs, edgecolor='black')
+    lsw = [2] + [1 for i in range(len(self.__datas))]
+    gdf.plot(linestyle=lss, linewidth=lsw, facecolor=fcs, edgecolor='black')
     # ax = boundary.plot(color = "aqua", edgecolor = "black")
     # for polygon in polygons:
     #   ax.add_patch(descartes.PolygonPatch(polygon, alpha=0))
