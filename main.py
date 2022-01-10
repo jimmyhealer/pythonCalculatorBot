@@ -5,7 +5,7 @@ import show
 speakBot = dialog.Dialog()
 
 running = True
-array = [[13, 20, 15, 25], [14, 11, 37, 50]]
+array = []
 cnt = 1
 while running:
   results = [[0, 0], [0, 0]]
@@ -20,5 +20,5 @@ while running:
   cnt += 1
 
 ans = calc.calc(array, cnt)
-show.GenerateGraph(array).showGraph()
 speakBot.result(ans)
+show.GenerateGraph(array).showGraph()
