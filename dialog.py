@@ -143,5 +143,5 @@ class Dialog:
     for index, i in enumerate(colorArea):
       if i != 0:
         msg = _DialogContent().content(7).replace('#', self.__color[index]).replace(
-            '@', '%d' % i).replace('&', '%d' % (i / area * 100))
+            '@', '%d' % i).replace('&', '%.2f' % (i / area * 100))
         self.speak(msg, 1)
