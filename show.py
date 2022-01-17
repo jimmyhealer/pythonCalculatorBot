@@ -27,7 +27,7 @@ class GenerateGraph:
     xmin, ymin, xmax, ymax = tuple(self.__datas[0][:4])
     polygons = []
     fcs = []
-    for data in self.__datas:
+    for data in reversed(self.__datas):
       polygons.insert(0, sg.box(data[0], data[1], data[2], data[3]))
       try:
         fcs.insert(0, self.__get_color[data[4]] + (1,))

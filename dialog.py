@@ -10,7 +10,9 @@ class _DialogContent:
       '第#個矩形的左下角%座標為?',
       '第#個矩形的右上角%座標為?',
       '還有矩形嗎?',
-      '覆蓋面積為 #'
+      '覆蓋總面積為 #',
+      '第#個矩形的顏色為?',
+      '#面積為 @ ，占比 & %',
   ]
   WELCOME = __COMPUTER[0]
   UNDERSTAND = __COMPUTER[1]
@@ -22,6 +24,7 @@ class _DialogContent:
 class Dialog:
   def __init__(self) -> None:
     self.record = []
+    self.__color = ['紅色', '橙色', '黃色', '綠色', '藍色', '紫色', '黑色', '青色']
     super().__init__()
     self.welcome()
 
@@ -82,6 +85,8 @@ class Dialog:
         return 'yes'
       elif self.__isdigit(text):
         return self.__toInt(text)
+      elif text in self.__color:
+        return 'color', self.__color.index(text)
       else:
         cnt += 1
         if cnt >= 5:
@@ -95,7 +100,7 @@ class Dialog:
   def understand(self):
     self.speak(_DialogContent().UNDERSTAND, 1)
 
-  def query(self, cnt: int, xy: int, lr: int):
+  def queryCoordinate(self, cnt: int, xy: int, lr: int):
     if lr == 0:
       self.speak(_DialogContent().content(2).replace(
           '#', '%d' % cnt).replace('%', "xy"[xy]), 1)
@@ -105,8 +110,21 @@ class Dialog:
     while True:
       result = self.listen()
       try:
-        if int(result) :
+        if int(result):
           return result
+      except:
+        self.understand()
+
+  def queryColor(self, cnt: int):
+    self.speak(_DialogContent().content(6).replace(
+        '#', '%d' % cnt), 1)
+    while True:
+      try:
+        type, result = self.listen()
+        if type == 'color':
+          return result
+        else:
+          self.understand()
       except:
         self.understand()
 
@@ -120,5 +138,10 @@ class Dialog:
         return True
       self.understand()
 
-  def result(self, area):
+  def result(self, area, colorArea):
     self.speak(_DialogContent().content(5).replace('#', '%d' % area), 1)
+    for index, i in enumerate(colorArea):
+      if i != 0:
+        msg = _DialogContent().content(7).replace('#', self.__color[index]).replace(
+            '@', '%d' % i).replace('&', '%d' % (i / area * 100))
+        self.speak(msg, 1)
