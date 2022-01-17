@@ -34,7 +34,7 @@
 
 ## DEMO
 
-![](https://i.imgur.com/vEhZ3ck.png)
+![](https://i.imgur.com/HZ2O0PV.png)
 
 ## dependency
 
