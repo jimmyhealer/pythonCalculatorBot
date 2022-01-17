@@ -38,10 +38,13 @@ class text_to_speech:
       pass
     pass
 
-  def speak(self, text, lang='zh-tw'):
-    tts = gTTS(text, lang=lang)
-    tts.save(self.active_mp3)
-    pygame.mixer.music.load(self.active_mp3)
+  def speak(self, text, lang='zh-tw', gogoro=0):
+    if not gogoro:
+      tts = gTTS(text, lang=lang)
+      tts.save(self.active_mp3)
+      pygame.mixer.music.load(self.active_mp3)
+    else:
+      pygame.mixer.music.load('./gogoro.mp3')
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy():
       continue
