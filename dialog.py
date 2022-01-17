@@ -61,12 +61,12 @@ class Dialog:
     return sum(1+(unicodedata.east_asian_width(c) in "WF")
                for c in string)
 
-  def speak(self, text='', current=1):
+  def speak(self, text='', current=1, gogoro=0):
     st = text_to_speech()
     if current == 1:
       ans = 'Computer> ' + text
       self.__speak(ans)
-      st.speak(text)
+      st.speak(text, gogoro=gogoro)
     elif current == 0:
       ans = '%s %s <User' % (' '*(60 - self.width(text)), text)
       self.__speak(ans)
@@ -79,7 +79,10 @@ class Dialog:
     while True:
       text = st.listen()
       self.speak(text, 0)
-      if '沒' in text:
+      if '抽' in text and ('gogoro' in text or '狗狗肉' in text):
+        self.speak('就說 沒有 要抽 gogoro 要問幾次!!', gogoro=1)
+        exit()
+      elif '沒' in text:
         return 'no'
       elif '有' in text:
         return 'yes'
